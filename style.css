@@ -1,0 +1,338 @@
+:root{
+  --bg: #0b1020;
+  --bg-soft: #12182b;
+  --card: #171f37;
+  --text: #e8ebf5;
+  --muted:#a6b0cf;
+  --accent: #7c5cff; /* violet */
+  --accent-2:#22c55e; /* green */
+  --danger:#ef4444; /* red */
+  --warning:#f59e0b; /* amber */
+  --shadow: 0 10px 30px rgba(0,0,0,.35);
+  --radius: 16px;
+  --radius-lg: 22px;
+  --blur: saturate(150%) blur(10px);
+  --grid-gap: 18px;
+}
+:root.light{
+  --bg:#f6f7fb;
+  --bg-soft:#ffffff;
+  --card:#ffffff;
+  --text:#111827;
+  --muted:#4b5563;
+  --accent:#6d28d9;
+  --accent-2:#059669;
+  --shadow: 0 10px 20px rgba(17,24,39,.08);
+  /* New: mild border for light theme */
+  --light-border: 1px solid rgba(0,0,0,0.1);
+}
+:root.light .card {
+    border: var(--light-border);
+}
+*{box-sizing:border-box}
+html,body{height:100%}
+body{
+  margin:0; font-family:Inter,system-ui,-apple-system,Segoe UI,Roboto,Ubuntu; color:var(--text);
+  background: radial-gradient(1000px 600px at 10% -10%, rgba(124,92,255,.18), transparent 60%),
+              radial-gradient(900px 500px at 110% 10%, rgba(34,197,94,.12), transparent 60%),
+              var(--bg);
+  transition: background-color .3s ease, color .3s ease;
+  overflow-x: hidden; /* Prevent horizontal scroll on small screens */
+}
+.page{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+}
+.container{
+  padding:22px; max-width:1280px; margin:0 auto;
+}
+.navbar{ /* Renamed from header to navbar for clarity */
+  display:flex; align-items:center; gap:16px; justify-content:space-between; margin-bottom:18px;
+  padding: 15px 22px; /* Add some padding to the navbar */
+  background: var(--bg-soft); /* Ensure navbar background is visible */
+  box-shadow: var(--shadow); /* Optional: Add shadow to navbar */
+}
+.brand{display:flex; align-items:center; gap:12px}
+.logo-link {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+}
+.nav-logo{
+  width:42px; /* Set a fixed size for the navbar logo */
+  height:42px;
+  border-radius:14px; /* Maintain rounded corners if your logo design allows */
+  object-fit: contain; /* Ensure the image fits within the bounds */
+  box-shadow:var(--shadow); /* Add shadow for depth */
+}
+.brand h1{font-size:20px; margin:0; letter-spacing:.2px; color:var(--text);} /* Ensure brand text color is consistent */
+.sub{font-size:12px; color:var(--muted); margin-top:2px}
+.right-head{display:flex; gap:8px; align-items:center}
+.btn{cursor:pointer; border:0; border-radius:12px; padding:10px 14px; font-weight:600; color:white;
+      background:var(--accent); box-shadow:var(--shadow); transition: transform .08s ease, opacity .2s}
+.btn:active{transform:translateY(1px)}
+.btn-secondary{background:transparent;color:var(--text);border:1px solid rgba(255,255,255,.1)}
+.kbd{font-size:12px; padding:6px 8px; border:1px solid rgba(255,255,255,.14); border-radius:8px; color:var(--muted)}
+
+/* Landing page specific styles */
+#landing-page {
+    justify-content: center; /* Center content vertically */
+    align-items: center; /* Center content horizontally */
+    text-align: center;
+    padding: 0; /* Remove default padding for full-bleed hero */
+}
+#landing-page .navbar {
+    position: absolute; /* Position navbar absolutely at the top */
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: transparent; /* Make landing page navbar transparent initially */
+    box-shadow: none;
+    z-index: 1000;
+}
+#landing-page.active-page .navbar {
+    background: var(--bg-soft); /* Only apply background when on landing page */
+    box-shadow: var(--shadow);
+}
+.hero-section {
+    flex-grow: 1; /* Allow hero section to take available space */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;
+    padding: 22px; /* Add padding for content */
+    padding-top: 100px; /* Account for navbar height */
+}
+.main-landing-logo {
+  max-width: 150px; /* Adjust size as needed for the main logo */
+  height: auto;
+  margin-bottom: 20px;
+  object-fit: contain;
+  box-shadow: var(--shadow);
+  border-radius: 20px; /* Optional: match navbar logo styling */
+}
+.hero-section h1 {
+    font-size: 4rem;
+    font-weight: 800;
+    margin-bottom: 0;
+    color: var(--text); /* Ensure text color is readable */
+}
+.hero-section p {
+    max-width: 600px;
+    font-size: 1.2rem;
+    color: var(--muted);
+    margin-top: 10px;
+}
+.hero-section .btn {
+    margin-top: 20px;
+    padding: 14px 24px;
+    font-size: 1rem;
+}
+.nav-link {
+    text-decoration: none;
+    color: var(--text);
+    padding: 8px 12px;
+    border-radius: 8px;
+    transition: background-color 0.2s ease;
+}
+.nav-link:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+}
+
+/* About Page Styles */
+#about-page {
+    padding-top: 80px; /* Account for fixed navbar */
+}
+.about-content {
+    max-width: 900px;
+    margin: 40px auto;
+    padding: 40px;
+    background-color: var(--card);
+    border-radius: var(--radius);
+    box-shadow: var(--shadow);
+    text-align: left;
+    border: 1px solid rgba(255,255,255,.06);
+}
+.about-content h2 {
+    font-size: 2.5rem;
+    color: var(--text);
+    margin-bottom: 20px;
+    text-align: center;
+}
+.about-content h3 {
+    font-size: 1.8rem;
+    color: var(--text);
+    margin-top: 30px;
+    margin-bottom: 15px;
+}
+.about-content p, .about-content li {
+    font-size: 1.1rem;
+    color: var(--muted);
+    margin-bottom: 10px;
+}
+.about-content ul {
+    list-style-type: disc;
+    margin-left: 20px;
+    padding-left: 0;
+}
+.about-content ul li {
+    margin-bottom: 5px;
+}
+
+/* Style for social links in the About section and footer */
+.social-links {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 15px;
+    margin-top: 20px;
+}
+
+.social-links p {
+    font-size: 1rem;
+    color: var(--muted);
+    margin-bottom: 0;
+}
+
+.social-links a, .social-links-footer a {
+    transition: transform 0.2s ease-in-out;
+}
+
+.social-links a:hover, .social-links-footer a:hover {
+    transform: scale(1.1);
+}
+
+.social-links img, .social-links-footer img {
+    width: 50px; /* Adjust size as needed */
+    height: auto;
+}
+
+/* Style for the footer with social links */
+.footer-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 10px;
+    margin: 26px 4px;
+    color: var(--muted);
+    font-size: 12px;
+}
+.social-links-footer {
+    display: flex;
+    gap: 12px;
+}
+
+
+/* Dashboard specific styles */
+#dashboard-page .navbar {
+    background: var(--bg-soft); /* Ensure dashboard navbar has a background */
+    box-shadow: var(--shadow);
+}
+
+
+.grid{
+  display:grid; gap:var(--grid-gap);
+  grid-template-columns: repeat(12, 1fr);
+  grid-auto-rows: minmax(120px, auto);
+}
+.card{
+  background: linear-gradient(180deg, rgba(255,255,255,.02), rgba(255,255,255,.00)), var(--card);
+  border:1px solid rgba(255,255,255,.06);
+  border-radius: var(--radius);
+  box-shadow: var(--shadow);
+  padding:16px; position:relative; overflow:hidden;
+}
+.card h2{margin:0 0 10px; font-size:16px}
+.muted{color:var(--muted)}
+.row{display:flex; gap:10px; align-items:center}
+.space{flex:1}
+.input, select{width:100%; background:var(--bg-soft); border:1px solid rgba(255,255,255,.08); color:var(--text); padding:10px 12px; border-radius:10px; outline:none}
+.input::placeholder{color:var(--muted)}
+.chips{display:flex; flex-wrap:wrap; gap:8px}
+.chip{background:rgba(124,92,255,.14); color:#d6ceff; border:1px solid rgba(124,92,255,.25); padding:6px 10px; border-radius:999px; font-size:12px}
+
+/* Cards sizing */
+.greet{grid-column: span 6}
+.weather{grid-column: span 6}
+.quotes{grid-column: span 12}
+.todo{grid-column: span 4}
+.habits{grid-column: span 4}
+.timer-card{grid-column: span 4}
+.calculator{grid-column: span 6}
+.converter{grid-column: span 6}
+
+/* Responsive */
+@media (max-width: 1000px){
+  .greet,.weather{grid-column: span 12}
+  .todo,.habits,.timer-card{grid-column: span 12}
+  .calculator,.converter{grid-column: span 12}
+}
+
+/* Greeter */
+.hello{font-size:28px; font-weight:800; letter-spacing:.2px}
+.today{font-size:13px; color:var(--muted); margin-top:6px}
+
+/* Weather */
+.wx{display:flex; align-items:center; gap:16px}
+.wx .big{font-size:36px; font-weight:800}
+.wx .small{font-size:12px; color:var(--muted)}
+
+/* Quotes */
+.quote{font-size:18px; font-weight:600}
+.author{color:var(--muted); margin-top:6px}
+
+/* TODO */
+.todo-list{display:flex; flex-direction:column; gap:8px; max-height:260px; overflow:auto; padding-right:6px}
+.task{display:flex; gap:10px; align-items:center; padding:10px; border-radius:12px; background:var(--bg-soft); border:1px solid rgba(255,255,255,.08)}
+.task input[type=checkbox]{width:18px; height:18px}
+.task .name{flex:1}
+.task.done .name{opacity:.6; text-decoration:line-through}
+.tiny{font-size:12px; color:var(--muted)}
+
+/* Habits */
+.habit{margin:10px 0}
+.bar{height:10px; background:rgba(255,255,255,.08); border-radius:999px; overflow:hidden}
+.bar > span{display:block; height:100%; background:linear-gradient(90deg, var(--accent), #a78bfa); width:0}
+
+/* Timer */
+.time{font-size:46px; font-weight:800; letter-spacing:2px; text-align:center; margin:10px 0 16px}
+.center{display:flex; justify-content:center; gap:10px}
+.timer-input {
+    background: var(--bg-soft);
+    color: var(--text);
+    border: 1px solid rgba(255, 255, 255, 0.08);
+    padding: 10px 12px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 100px;
+}
+.timer-options {
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 16px;
+}
+
+
+/* Calculator */
+.calc{display:grid; grid-template-columns: repeat(4, 1fr); gap:10px}
+.calc .screen{grid-column: span 4; padding:16px; font-size:22px; background:var(--bg-soft); border:1px solid rgba(255,255,255,.08); border-radius:12px; text-align:right; min-height:56px}
+.key{padding:14px; border:1px solid rgba(255,255,255,.1); background:rgba(255,255,255,.04); border-radius:12px; font-weight:700; cursor:pointer; user-select:none; text-align:center}
+.key.op{background:rgba(124,92,255,.16); border-color:rgba(124,92,255,.3)}
+.key.equal{background:linear-gradient(180deg,var(--accent),#9b8cff); color:white}
+
+/* Converter */
+.conv-grid{display:grid; grid-template-columns: repeat(2, 1fr); gap:12px}
+@media (max-width: 640px){ .conv-grid{grid-template-columns: 1fr} }
+.conv-row{display:flex; gap:8px; align-items:center}
+
+/* Footer */
+footer{margin:26px 4px; color:var(--muted); font-size:12px; text-align: center;}
+
+/* Animations */
+.fade-in{animation:fade .5s ease both}
+@keyframes fade{from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none}}
